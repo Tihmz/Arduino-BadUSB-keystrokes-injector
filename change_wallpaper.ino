@@ -53,7 +53,7 @@ void setup()
   text2=fr2en("Desktop\" /v Wallpaper /t REG_SZ /d C:");
   Keyboard.print(text2);
   printBSlash(1);
- String a=fr2en("Users");
+  String a=fr2en("Users");
   Keyboard.print(a);
   printBSlash(1);
   a=fr2en("public");
@@ -74,7 +74,7 @@ void setup()
   Keyboard.end();
 }
 
-String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty/?replytocom=1879#respond
+String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty
 {
   int i = 0;
   String _en = " =qwertyuiopasdfghjkl;zxcvbnQWERTYUIOPASDFGHJKL:ZXCVBNm,./M<>?1234567890!@#$%^&*()\"",
