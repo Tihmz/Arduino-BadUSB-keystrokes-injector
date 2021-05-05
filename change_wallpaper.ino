@@ -23,7 +23,7 @@ void setup()
   Keyboard.print(text);
   delay(100);
   typeKey(KEY_RETURN);
-  delay(200);
+  delay(500);
   
   //changing working directory
   text=fr2en("cd C:");
@@ -38,7 +38,7 @@ void setup()
   delay(100);
 
   //downloading the picture (you can change easily the link with the one of your choice
-  String text1=fr2en("Invoke-WebRequest  http://www.thecuriosityworkshop.com/wp-content/uploads/2015/03/01-rubberduck-hongkong.jpg -o 01-rubberduck-hongkong.jpg");
+  String text1=fr2en("Invoke-WebRequest  https://media.npr.org/assets/img/2013/05/06/ducky062way-23e257dfd081032928ffbd73768a7ddd8615f1f3.jpg -o ducky062way-23e257dfd081032928ffbd73768a7ddd8615f1f3.jpg");
   Keyboard.print(text1);
   typeKey(KEY_RETURN);
   delay(1000); //1 sec to download 
@@ -53,13 +53,13 @@ void setup()
   text2=fr2en("Desktop\" /v Wallpaper /t REG_SZ /d C:");
   Keyboard.print(text2);
   printBSlash(1);
-  String a=fr2en("Users");
+ String a=fr2en("Users");
   Keyboard.print(a);
   printBSlash(1);
   a=fr2en("public");
   Keyboard.print(a);
   printBSlash(1);
-  a=fr2en("01-rubberduck-hongkong.jpg /f");
+  a=fr2en("ducky062way-23e257dfd081032928ffbd73768a7ddd8615f1f3.jpg /f");
   Keyboard.print(a);
   typeKey(KEY_RETURN);
   delay(200);
@@ -74,7 +74,7 @@ void setup()
   Keyboard.end();
 }
 
-String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty
+String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty/?replytocom=1879#respond
 {
   int i = 0;
   String _en = " =qwertyuiopasdfghjkl;zxcvbnQWERTYUIOPASDFGHJKL:ZXCVBNm,./M<>?1234567890!@#$%^&*()\"",
