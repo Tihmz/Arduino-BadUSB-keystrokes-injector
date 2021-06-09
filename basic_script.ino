@@ -30,7 +30,7 @@ void setup()
   Keyboard.end();
 }
 
-String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty/?replytocom=1879#respond
+String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty/
 {
   int i = 0;
   String _en = " =qwertyuiopasdfghjkl;zxcvbnQWERTYUIOPASDFGHJKL:ZXCVBNm,./M<>?1234567890!@#$%^&*()\"-",
