@@ -21,35 +21,78 @@ void pressKey(int key)
 
 void setup()
 {
+  Serial.begin(9600);
   Keyboard.begin();
 
   //delay for debugging and safety
   delay(5000);
 
-
   Keyboard.end();
 }
 
-String fr2en(String text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty/
+String fr2en(char text) //azerty to qwerty keyboard, found here: https://dyrk.org/2018/12/09/arduino-simuler-un-clavier-azerty/
 {
   int i = 0;
   String _en = " =qwertyuiopasdfghjkl;zxcvbnQWERTYUIOPASDFGHJKL:ZXCVBNm,./M<>?1234567890!@#$%^&*()\"-",
          _fr = " =azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN,;:!?./ & \"'(- _  1234567890%)",
          str = "";
-  while (text[i] != 0){
-    str = str + (String)_en[_fr.indexOf((String)text[i++])];
-  }
+  str = str + (String)_en[_fr.indexOf((String)text)];
   return str;
 }
 
 void Keyboardprint(String text)
 {
-  text=fr2en(text);
+ // text=fr2en(text);
   int n=text.length();
   for(int i=0;i<n;i++)
   {
-      Keyboard.print(text[i]);
+      if(text[i]=='$')
+      {
+        keyboardScanCode(48);
+      }
+      else if(text[i]=='\'')
+      {
+        keyboardScanCode(33);
+      }
+      else if(text[i]=='\\')
+      {
+        printAG(1,37);
+      }
+      else if(text[i]=='[')
+      {
+        printAG(1,34);
+      }
+      else if(text[i]==']')
+      {
+        printAG(1,45);
+      }
+      else if(text[i]=='{')
+      {
+        printAG(1,33);
+      }
+      else if(text[i]=='}')
+      {
+        printAG(1,46);
+      }
+      else if(text[i]=='|')
+      {
+        printAG(1,35);
+      }
+      else if(text[i]=='>')
+      {
+        printMaj(1,100);
+      }
+      else if(text[i]=='<')
+      {
+        keyboardScanCode(100);
+      }
+      else
+      {
+        String c=fr2en(text[i]);
+        Keyboard.print(c);
+      }  
   }
+  
 }
 
 void keyboardScanCode(byte code) //to press special key like '\', found here: https://forum.arduino.cc/t/keyboard-h-et-antislash/565172/3 (thanks to nico78)
@@ -60,19 +103,52 @@ void keyboardScanCode(byte code) //to press special key like '\', found here: ht
   delay(4); 
 }
 
-void printCA(int n, int s)
+void printAG(int n, int s) //to print '\'
 {    
   for (int i=0;i<n;i++)
   {
-    Keyboard.press(KEY_LEFT_CTRL);  
-    Keyboard.press(KEY_LEFT_ALT);  
+    Keyboard.press(KEY_RIGHT_ALT);  
     keyboardScanCode(s);  
-    Keyboard.release(KEY_LEFT_ALT);  
-    Keyboard.release(KEY_LEFT_CTRL);
+    Keyboard.release(KEY_RIGHT_ALT);  
   }
 }
 
 void printMaj(int n, int s)
+{
+  for (int i=0;i<n;i++)
+  {
+    Keyboard.press(KEY_LEFT_SHIFT);  
+    keyboardScanCode(s);  
+    Keyboard.release(KEY_LEFT_SHIFT);  
+  }
+}
+
+
+
+void loop() {}
+  }
+  
+}
+
+void keyboardScanCode(byte code) //to press special key like '\', found here: https://forum.arduino.cc/t/keyboard-h-et-antislash/565172/3 (thanks to nico78)
+{  
+  Keyboard.press(code+136);  
+  delay(4);  
+  Keyboard.release(code+136);  
+  delay(4); 
+}
+
+void printAG(int n, int s) //to print alt gr + some character
+{    
+  for (int i=0;i<n;i++)
+  {
+    Keyboard.press(KEY_RIGHT_ALT);  
+    keyboardScanCode(s);  
+    Keyboard.release(KEY_RIGHT_ALT);  
+  }
+}
+
+void printMaj(int n, int s) //print an uppercase character
 {
   for (int i=0;i<n;i++)
   {
